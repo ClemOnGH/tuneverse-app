@@ -1,1 +1,82 @@
-
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Tuneverse</title>
+    </head>
+    <body>
+        <style>
+            * {
+                box-sizing: border-box;
+                padding: 0;
+                margin: 0;
+            }
+            body {
+                overflow: hidden;
+                background-color: #222;
+                display: flex;
+                flex-direction: column;
+                width: 100vw;
+                height: 100vh;
+            }
+            #window {
+                display: flex;
+                background-color: #111;
+                width: 100%;
+                height: calc(100% - 120px);
+            }
+            #media-player {
+                display: flex;
+                justify-content: space-between;
+                background-color: #444;
+                width: 100%;
+                height: 120px;
+            }
+            #media-player button {
+                padding: 1rem;
+                border-radius: 5px;
+            }
+            #navbar {
+                background-color: #333;
+                width: 20%;
+                height: 100%;
+            }
+            #feed {
+                height: 100%;
+                width: 60%;
+            }
+            #vide {
+                height: 100%;
+                width: 20%;
+                background-color: #333;
+            }
+            #album {
+                display: flex;
+                color: white;
+            }
+        </style>
+        <div id="window">
+            <div id="navbar"></div>
+            <div id="feed"></div>
+            <div id="vide"></div>
+        </div>
+        <div id="media-player">
+            <div id="album">
+                <img src="https://i.scdn.co/image/ab67616d0000b2734246e3158421f5abb75abc4f" width="100px" />
+                <div>
+                    <h1>All I Want For Christmas Is You</h1>
+                    <h2>Mariah Carey</h2>
+                </div>
+            </div>
+            <div id="progress-slider"></div>
+            <div>
+                <button id="lyrics-button">lyrics</button>
+                <button id="cast-button">cast</button>
+                <button id="volume-slider">volume</button>
+                <div id="action-buttons"></div>
+            </div>
+        </div>
+        <script src="app.js"></script>
+    </body>
+</html>

@@ -1,0 +1,56 @@
+{
+    "users": [
+        {
+            "name": "",
+            "id": 0,
+            "playlists": [
+                {
+                    "title": "likes",
+                    "list": []
+                },
+                {
+                    "title": "rock-pop",
+                    "list": []
+                },
+                {
+                    "title": "jazz",
+                    "list": []
+                },
+                {
+                    "title": "blackpink-cest-trop-les-best",
+                    "list": [],
+                    "duration": ""
+                }
+            ],
+            "settings": [{ "shuffle": false }, { "replay": "all" }, { "audioBitrate": 192 }, { "audioQuality": "normal" }],
+            "devices": [],
+            "queue": []
+        },
+        {
+            "name": "",
+            "id": 1,
+            "playlists": [
+                {
+                    "title": "likes",
+                    "list": []
+                },
+                {
+                    "title": "rock-pop",
+                    "list": []
+                },
+                {
+                    "title": "jazz",
+                    "list": []
+                },
+                {
+                    "title": "blackpink-cest-trop-les-best",
+                    "list": [],
+                    "duration": ""
+                }
+            ],
+            "settings": [{ "shuffle": true }, { "replay": "all-one" }, { "audioBitrate": 192 }, { "audioQuality": "normal" }],
+            "devices": [],
+            "queue": []
+        }
+    ]
+}
