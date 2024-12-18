@@ -19,6 +19,7 @@
                 flex-direction: column;
                 width: 100vw;
                 height: 100vh;
+                user-select: none;
             }
             #window {
                 display: flex;
@@ -63,35 +64,45 @@
             .song-artist {
                 color: #666;
             }
-            #action-buttons button img {
-                mix-blend-mode: multiply;
+            #action-buttons {
+                display: flex;
+                justify-content: space-around;
+                height: 100%;
             }
+            #action-buttons div {
+                width: 60px;
+            }
+            /* #action-buttons div img {
+                mix-blend-mode: multiply;
+            } */
             #volume-slider {
                 transition: all 0.25s;
             }
         </style>
         <div id="window">
             <div id="navbar"></div>
-            <div id="feed"></div>
+            <div id="feed">
+                <button id="spotify-auth">S'authentifier</button>
+            </div>
             <div id="vide"></div>
         </div>
         <div id="media-player">
             <div id="album">
-                <img src="https://i.scdn.co/image/ab67616d0000b2734246e3158421f5abb75abc4f" width="80px" height="80px" />
+                <img src="" width="80px" height="80px" />
                 <div>
-                    <p><span class="song-title">All I Want For Christmas Is You</span><br /><span class="song-artist">Mariah Carey</span></p>
+                    <p><span class="song-title"></span><br /><span class="song-artist"></span></p>
                 </div>
             </div>
             <div id="progress-slider"></div>
             <div id="action-buttons">
                 <div id="lyrics-button">
-                    <img style="filter: invert(1); mix-blend-mode: multiply" height="20px" src="./icons/caption.png" />
+                    <img height="25px" src="./icons/caption.svg" />
                 </div>
                 <div id="cast-button">
-                    <img style="filter: invert(1); mix-blend-mode: multiply" height="20px" src="./icons/cast.png" />
+                    <img height="25px" src="./icons/cast.svg" />
                 </div>
                 <div id="devices-button">
-                    <img style="filter: invert(1); mix-blend-mode: multiply" height="20px" src="./icons/cell-phone.png" />
+                    <img height="25px" src="./icons/cell-phone.svg" />
                 </div>
                 <input id="volume-slider" type="range" min="0" max="100" value="50" step="5" />
             </div>
