@@ -3,6 +3,8 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="navbar.css" />
+        <link rel="stylesheet" href="metadata.css" />
         <title>Tuneverse</title>
         <link rel="stylesheet" href="./style/feed.css" />
     </head>
@@ -39,71 +41,18 @@
                 padding: 1rem;
                 border-radius: 5px;
             }
-            #navbar {
-                width: 15%;
-                height: 100%;
-                background: linear-gradient(to left, #111, gray);
-                font-family: system-ui;
-                display: flex;
-                flex-direction: column;
-                align-items: left;
-                padding-left: 1rem;
-                justify-content: center;
-                gap: 45px;
-                color: white;
-                text-transform: uppercase;
-            }
-
-            #test {
-                margin-top: 40px;
-            }
-
-            #navbar h3 {
-                font-size: 35px;
-            }
-
-            #navbar h5 {
-                font-size: 20px;
-                position: relative;
-            }
-
-            #navbar h5::before {
-                content: "";
-                display: block;
-                height: 2.5px;
-                width: 0%;
-                background: linear-gradient(to left, #111, gray);
-                position: absolute;
-                transition: all ease-in-out 250ms;
-            }
-
-            #navbar h5:hover {
-                color: lightgray;
-                cursor: pointer;
-            }
-
-            #navbar h5:hover::before {
-                width: 70%;
-            }
-
-            #test {
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            #logo-tuneverse {
-                width: 100px;
-            }
 
             #feed {
                 width: 60%;
                 height: 100%;
             }
-            #vide {
+
+            #metadata {
                 height: 100%;
-                width: 20%;
+                width: 25%;
+                color: white;
             }
+
             #album {
                 position: relative;
                 margin: auto 0;
@@ -127,11 +76,14 @@
             #action-buttons div {
                 width: 60px;
             }
-            /* #action-buttons div img {
+            #action-buttons div img {
                 mix-blend-mode: multiply;
-            } */
+            }
             #volume-slider {
                 transition: all 0.25s;
+            }
+            #devices-button {
+                background-color: red;
             }
         </style>
         <div id="window">
@@ -139,17 +91,17 @@
                 <img src="./icons/logo tuneverse.png" alt="logo" id="logo-tuneverse" />
                 <h3>Tuneverse</h3>
                 <div id="test">
-                    <h5>Feed</h5>
-                    <h5>Wrapped</h5>
-                    <h5>Playlists</h5>
+                    <div><h5>Feed</h5></div>
+                    <div><h5>wrapped</h5></div>
+                    <div><h5>Playlist</h5></div>
                 </div>
                 <h6>my playlists :</h6>
                 <div>
-                    <p>Favorites</p>
-                    <p>playlist</p>
-                    <p>playlist</p>
-                    <p>playlist</p>
-                    <p>playlist</p>
+                    <div><p>Favorites</p></div>
+                    <div><p>playlist</p></div>
+                    <div><p>playlist</p></div>
+                    <div><p>playlist</p></div>
+                    <div><p>Playlist</p></div>
                 </div>
             </div>
             <div id="feed">
@@ -157,7 +109,21 @@
                 <p id="output"></p>
                 <input id="spotify-query" />
             </div>
-            <div id="vide"></div>
+            <div id="metadata">
+                <!-- <div id="lyrics">
+                    <h4>lyrics</h4>
+                    <div>
+                        <pre>ezhzvcyaebcuchisubvcnzkjcsqvdddddddddddddbcvizubcvuzbviuzb</pre>
+                    </div>
+                </div> -->
+                <div>
+                    <p>metadata</p>
+                    <p>(artiste, crédit, partager, like, next in queue, concert organisé)</p>
+                </div>
+                <div>
+                    <p>current device</p>
+                </div>
+            </div>
         </div>
         <div id="media-player">
             <div id="album">
@@ -180,6 +146,7 @@
                 <input id="volume-slider" type="range" min="0" max="100" value="50" step="5" />
             </div>
         </div>
+        <script src="metadata.js"></script>
         <script src="app.js"></script>
     </body>
 </html>
