@@ -1,0 +1,68 @@
+#navbar {
+    width: 15%;
+    height: 100%;
+    background: linear-gradient(to left, #111, gray);
+    font-family: system-ui;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    gap: 45px;
+    color: white;
+    text-transform: uppercase;
+}
+
+#test {
+    margin-top: 40px;
+}
+
+#navbar h3 {
+    font-size: 35px;
+    padding-left: 1rem;
+}
+
+#navbar h5 {
+    font-size: 20px;
+    position: relative;
+}
+
+#navbar h6 {
+    padding-left: 1rem;
+}
+
+#navbar div div {
+    padding: 5px;
+    padding-left: 10px;
+    width: 80%;
+}
+
+#navbar div div::before {
+    content: "";
+    display: block;
+    height: 2.5px;
+    width: 0%;
+    background: linear-gradient(to left, #111, gray);
+    position: absolute;
+    transition: all ease-in-out 250ms;
+}
+
+#navbar div div:hover {
+    color: lightgray;
+    cursor: pointer;
+}
+
+#navbar div:hover::before {
+    width: 10%;
+}
+
+#test {
+    display: flex;
+    flex-direction: column;
+}
+
+#logo-tuneverse {
+    position: relative;
+    top: 10px;
+    width: 100px;
+    padding-left: 1rem;
+}

@@ -1,0 +1,31 @@
+#lyrics {
+    background-color: blue;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+}
+
+#lyrics h4 {
+    font-size: 35px;
+    padding: 30px;
+}
+
+#lyrics div pre{
+    font-size: 30px;
+}
+
+#lyrics div {
+    background-color: green;
+    white-space: normal; 
+    word-wrap: break-word;  
+    height: 80%;
+    width: 95%;
+}
+
+#lyrics div pre {
+    display: block;  
+    white-space: pre-wrap;  
+    line-height: 1.5;
+}
