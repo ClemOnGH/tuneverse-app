@@ -14,7 +14,7 @@
             }
             body {
                 overflow: hidden;
-                background-color: #222;
+                background-color: #111;
                 display: flex;
                 flex-direction: column;
                 width: 100vw;
@@ -22,23 +22,21 @@
             }
             #window {
                 display: flex;
-                background-color: #111;
                 width: 100%;
-                height: calc(100% - 120px);
+                height: calc(100% - 80px);
             }
             #media-player {
+                background-color: #222;
                 display: flex;
                 justify-content: space-between;
-                background-color: #444;
                 width: 100%;
-                height: 120px;
+                height: 80px;
             }
             #media-player button {
                 padding: 1rem;
                 border-radius: 5px;
             }
             #navbar {
-                background-color: #333;
                 width: 20%;
                 height: 100%;
             }
@@ -49,11 +47,27 @@
             #vide {
                 height: 100%;
                 width: 20%;
-                background-color: #333;
             }
             #album {
+                position: relative;
+                margin: auto 0;
                 display: flex;
                 color: white;
+            }
+            #album p {
+                margin-left: 1.5rem;
+                font-family: system-ui;
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+            }
+            .song-artist {
+                color: #666;
+            }
+            #action-buttons button img {
+                mix-blend-mode: multiply;
+            }
+            #volume-slider {
+                transition: all 0.25s;
             }
         </style>
         <div id="window">
@@ -63,18 +77,25 @@
         </div>
         <div id="media-player">
             <div id="album">
-                <img src="https://i.scdn.co/image/ab67616d0000b2734246e3158421f5abb75abc4f" width="100px" />
+                <img src="https://i.scdn.co/image/ab67616d0000b2734246e3158421f5abb75abc4f" width="80px" height="80px" />
                 <div>
-                    <h1>All I Want For Christmas Is You</h1>
-                    <h2>Mariah Carey</h2>
+                    <p>
+                        <span class="song-title">All I Want For Christmas Is You</span><br /><span class="song-artist">Mariah Carey</span>
+                    </p>
                 </div>
             </div>
             <div id="progress-slider"></div>
-            <div>
-                <button id="lyrics-button">lyrics</button>
-                <button id="cast-button">cast</button>
-                <button id="volume-slider">volume</button>
-                <div id="action-buttons"></div>
+            <div id="action-buttons">
+                <button id="lyrics-button">
+                    <img style="filter: invert(1); mix-blend-mode: multiply" height="20px" src="./icons/caption.png" />
+                </button>
+                <button id="cast-button">
+                    <img style="filter: invert(1); mix-blend-mode: multiply" height="20px" src="./icons/cast.png" />
+                </button>
+                <button id="devices-button">
+                    <img style="filter: invert(1); mix-blend-mode: multiply" height="20px" src="./icons/cell-phone.png" />
+                </button>
+                <input id="volume-slider" type="range" min="0" max="100" value="50" step="5" />
             </div>
         </div>
         <script src="app.js"></script>
