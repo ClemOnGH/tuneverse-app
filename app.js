@@ -1,63 +1,57 @@
-// Last.FM API : https://www.last.fm/api/intro
-// Spotify API : https://developer.spotify.com/documentation/web-api
-// Koel API : https://docs.koel.dev/guide/what-is-koel#installation
+// // Last.FM API : https://www.last.fm/api/intro
+// // Spotify API : https://developer.spotify.com/documentation/web-api
+// // Koel API : https://docs.koel.dev/guide/what-is-koel#installation
 
-const spotify = {
-    redirectUri: "http://localhost:5000",
-    clientID: "20501cd4492c46d8b1e87c3b27d4822d",
-    responseType: "code",
-    clientSecret: "54b3e851104342368449b310c9a66e37",
-    url: `https://accounts.spotify.com/authorize?`,
-    scopes: ["user-read-private", "user-read-email"],
-};
+const loginButton = document.getElementById("spotify-auth");
+const trackTitle = document.getElementById("track-title");
+const album = document.getElementById("album-image");
+let trackInfo;
 
-const songs = [
-    { title: "All I Want For Christmas Is You", artist: ["Mariah Carey"], album: "./albums/mariah_carey.jpg" },
-    { title: "The Tale Of A Cruel World", artist: ["DM DOKURO"], album: "./albums/dm_dokuro.jpg" },
-    { title: "Shine On", artist: ["Kaskade", "Wilkinson", "Paige Cavell"], album: "./albums/kaskade.jpg" },
-];
-
-const albumArea = document.getElementById("album");
-const songTitle = document.getElementsByClassName("song-title")[0];
-const songArtist = document.getElementsByClassName("song-artist")[0];
-
-const authButton = document.getElementById("spotify-auth");
-
-authButton.addEventListener("click", () => {
-    const state = generateRandomString(16);
-    localStorage.setItem("spotify_auth_state", state);
-
-    window.location = spotify.url + `response_type=${spotify.responseType}&client_id=${spotify.clientID}&redirect_uri=${spotify.redirectUri}&state=${state}`;
+loginButton.addEventListener("click", () => {
+    window.location.href = "http://localhost:3001/login";
 });
 
-window.onload = async () => {
-    const params = new URLSearchParams(window.location.search);
-    const code = params.get("code");
+const urlParams = new URLSearchParams(window.location.search);
+const code = urlParams.get("code");
 
-    const request = fetch("https://accounts.spotify.com/api/token", {
-        method: "POST",
-        body: {
-            code: code,
-            redirect_uri: spotify.redirectUri,
-            grant_type: "authorization_code",
-        },
+if (code) {
+    fetch(`http://localhost:3001/callback?code=${code}`)
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+            accessToken = data.access_token;
+            output.textContent = "Access Token obtenu !";
+            localStorage.setItem("token", accessToken);
+        })
+        .catch((err) => {
+            output.textContent = "Erreur lors de l'obtention de l'access token.";
+            console.error(err);
+        });
+}
+
+window.onload = async () => {
+    const request = await fetch("https://api.spotify.com/v1/search?type=track&q=jme%20tire%20maitre%20gims&limit=1", {
+        method: "GET",
         headers: {
-            "content-type": "application/x-www-form-urlencoded",
-            "authorization": "Basic " + btoa(spotify.clientID + ":" + spotify.clientSecret),
-            "content": {},
+            authorization: `Bearer ${localStorage.getItem("token")}`,
         },
     });
-    const response = (await request).json();
-    console.log(response);
-};
+    const res = await request.json();
+    trackInfo = {
+        title: "",
+        artist: [],
+        album: "",
+    };
 
-function generateRandomString(length) {
-    let text = "";
-    const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    console.log(res.tracks.items[0]);
 
-    for (let i = 0; i < length; i++) {
-        text += possible.charAt(Math.floor(Math.random() * possible.length));
+    trackInfo.title = res.tracks.items[0].name;
+    trackInfo.album = res.tracks.items[0].album.images[0].url;
+    for (artist of res.tracks.items[0].artists) {
+        trackInfo.artist.push(artist.name);
     }
 
-    return text;
-}
+    console.log(trackInfo);
+    trackTitle.innerHTML = `${trackInfo.title}<br><span style="color: rgba(255,255,255,0.4)">${trackInfo.artist}</span>`;
+    album.src = trackInfo.album;
+};

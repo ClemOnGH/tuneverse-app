@@ -4,6 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Tuneverse</title>
+        <link rel="stylesheet" href="./style/feed.css" />
     </head>
     <body>
         <style>
@@ -151,14 +152,18 @@
                     <p>playlist</p>
                 </div>
             </div>
-            <div id="feed"></div>
+            <div id="feed">
+                <button id="spotify-auth">S'authentifier</button>
+                <p id="output"></p>
+                <input id="spotify-query" />
+            </div>
             <div id="vide"></div>
         </div>
         <div id="media-player">
             <div id="album">
-                <img src="" width="80px" height="80px" />
+                <img id="album-image" width="80px" height="80px" />
                 <div>
-                    <p><span class="song-title"></span><br /><span class="song-artist"></span></p>
+                    <p id="track-title"></p>
                 </div>
             </div>
             <div id="progress-slider"></div>
