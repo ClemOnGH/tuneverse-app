@@ -1,0 +1,89 @@
+#lyrics {
+    background: #111;
+    border-left: rgba(255, 255, 255, 0.671) 2px solid;
+    color: lightgray;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+}
+
+
+#lyrics h4 {
+    font-size: 35px;
+    padding: 30px;
+    color: white;
+}
+
+#lyrics div pre{
+    font-size: 20px;
+    display: block;  
+    white-space: pre-wrap;  
+    line-height: 1.5;
+}
+
+#lyrics div {
+    white-space: normal; 
+    word-wrap: break-word;  
+    height: 80%;
+    width: 95%;
+    overflow: auto;
+}
+
+#divMD {
+    background: #111;
+    border-left: rgba(255, 255, 255, 0.671) 2px solid;
+    color: lightgray;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+}
+
+#title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+}
+
+
+#divMD h4 {
+    font-size: 35px;
+    padding: 30px;
+    color: white;
+}
+
+#divMD div pre{
+    font-size: 25px;
+    display: block;  
+    white-space: pre-wrap;  
+    line-height: 1.5;
+}
+
+#divMD div {
+    white-space: normal; 
+    word-wrap: break-word;  
+    height: 80%;
+    width: 95%;
+}
+
+
+#imgMD {
+    max-width: auto;
+    max-height: 250px;
+}
+
+#divMD div:first-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 25px;
+    margin-bottom: 30px;
+}
+
+#title div:last-child {
+    background-color: gray;
+    padding: 20px;
+    text-align: center;
+}

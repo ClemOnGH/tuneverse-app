@@ -45,6 +45,7 @@ window.onload = async () => {
 
     for (artist of res.tracks.items[0].artists) {
         artists.push(artist.name);
+        artists.push(artist.name);
     }
 
     trackTitle.innerHTML = `${res.tracks.items[0].name}<br><span style="color: rgba(255,255,255,0.4)">${artists.join(", ")}</span>`;
