@@ -37,21 +37,14 @@ window.onload = async () => {
         },
     });
     const res = await request.json();
-    trackInfo = {
-        title: "",
-        artist: [],
-        album: "",
-    };
+    let artists = [];
 
     console.log(res.tracks.items[0]);
-
-    trackInfo.title = res.tracks.items[0].name;
-    trackInfo.album = res.tracks.items[0].album.images[0].url;
     for (artist of res.tracks.items[0].artists) {
-        trackInfo.artist.push(artist.name);
+        artists.push(artist.name);
     }
 
     console.log(trackInfo);
-    trackTitle.innerHTML = `${trackInfo.title}<br><span style="color: rgba(255,255,255,0.4)">${trackInfo.artist}</span>`;
-    album.src = trackInfo.album;
+    trackTitle.innerHTML = `${res.tracks.items[0].name}<br><span style="color: rgba(255,255,255,0.4)">${artists.join(", ")}</span>`;
+    album.src = res.tracks.items[0].album.images[0].url;
 };
