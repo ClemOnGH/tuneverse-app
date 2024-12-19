@@ -3,9 +3,10 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="navbar.css">
-        <link rel="stylesheet" href="metadata.css">
+        <link rel="stylesheet" href="navbar.css" />
+        <link rel="stylesheet" href="metadata.css" />
         <title>Tuneverse</title>
+        <link rel="stylesheet" href="./style/feed.css" />
     </head>
     <body>
         <style>
@@ -40,7 +41,7 @@
                 padding: 1rem;
                 border-radius: 5px;
             }
-           
+
             #feed {
                 width: 60%;
                 height: 100%;
@@ -51,7 +52,7 @@
                 width: 25%;
                 color: white;
             }
-            
+
             #album {
                 position: relative;
                 margin: auto 0;
@@ -84,9 +85,6 @@
             #devices-button {
                 background-color: red;
             }
-
-
-
         </style>
         <div id="window">
             <div id="navbar">
@@ -106,7 +104,11 @@
                     <div><p>Playlist</p></div>
                 </div>
             </div>
-            <div id="feed"></div>
+            <div id="feed">
+                <button id="spotify-auth">S'authentifier</button>
+                <p id="output"></p>
+                <input id="spotify-query" />
+            </div>
             <div id="metadata">
                 <!-- <div id="lyrics">
                     <h4>lyrics</h4>
@@ -125,9 +127,9 @@
         </div>
         <div id="media-player">
             <div id="album">
-                <img src="" width="80px" height="80px" />
+                <img id="album-image" width="80px" height="80px" />
                 <div>
-                    <p><span class="song-title"></span><br /><span class="song-artist"></span></p>
+                    <p id="track-title"></p>
                 </div>
             </div>
             <div id="progress-slider"></div>
@@ -139,9 +141,9 @@
                     <img height="25px" src="./icons/cast.svg" />
                 </div>
                 <div id="devices-button">
-                    <img height="25px" src="./icons/cell-phone.svg"/>
+                    <img height="25px" src="./icons/cell-phone.svg" />
                 </div>
-                <input id="volume-slider" type="range" min="0" max="100" value="50" step="5" /> 
+                <input id="volume-slider" type="range" min="0" max="100" value="50" step="5" />
             </div>
         </div>
         <script src="metadata.js"></script>
