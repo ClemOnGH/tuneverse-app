@@ -13,7 +13,7 @@ async function query() {
     return (lyrics.innerHTML = `
     <h4>Lyrics</h4>
     <div>
-    <pre> lorem*10</pre>
+    <pre>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt, atque blanditiis quidem veniam exercitationem facilis ex quos quae officia eius dicta nostrum quod eaque reprehenderit, temporibus voluptate magni laboriosam nobis.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt, atque blanditiis quidem veniam exercitationem facilis ex quos quae officia eius dicta nostrum quod eaque reprehenderit, temporibus voluptate magni laboriosam nobis.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt, atque blanditiis quidem veniam exercitationem facilis ex quos quae officia eius dicta nostrum quod eaque reprehenderit, temporibus voluptate magni laboriosam nobis.</pre>
     </div>
     `);
 }
