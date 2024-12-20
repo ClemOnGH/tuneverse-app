@@ -2,7 +2,7 @@
     --accent: rgb(71, 175, 245);
 }
 #feed {
-    width: 60%;
+    width: 100%;
     height: 100%;
     padding: 1rem;
 }
@@ -66,16 +66,6 @@
     color: white;
     border-top: 1px solid transparent;
     transition: border 0.25s, color 0.25s, background 0.25s;
-}
-#leaderboard-results table td {
-    border-left: 1px solid rgba(0, 0, 0, 0);
-    border: 1px;
-    cursor: pointer;
-    transition: border-left 0.25s;
-}
-#leaderboard-results table td:hover {
-    border-left: 1px solid var(--accent);
-    transition: border-left 0.25s;
 }
 #leaderboard-results tr {
     color: rgba(255, 255, 255, 0.5);
