@@ -1,9 +1,7 @@
 let devicesButton = document.getElementById("devices-button")
 let metaData = document.getElementById("metadata")
+let lyrics = document.getElementById("lyrics")
 
-devicesButton.addEventListener("click", () => {
-    query()
-})
 
 async function query() {
     const request = await fetch("https://api.spotify.com/v1/search?type=track&q=gims%20bella&limit=3", {
@@ -13,5 +11,15 @@ async function query() {
         },
     });
     const response = await request.json();
-    return metaData.innerHTML += "hey";
+    return lyrics.innerHTML = `
+    <h4>Lyrics</h4>
+    <div>
+    <pre> lorem*10</pre>
+    </div>
+    `;
 } 
+
+devicesButton.addEventListener("click", () => {
+    query()
+    lyrics.classList.toggle("visible")
+})
