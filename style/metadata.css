@@ -1,3 +1,9 @@
+#metadata {
+    height: 100%;
+    width: 30%;
+    color: white;
+}
+
 #lyrics {
     background: #111;
     border-left: rgba(255, 255, 255, 0.671) 2px solid;
@@ -15,12 +21,6 @@
     color: white;
 }
 
-#lyrics div pre{
-    font-size: 20px;
-    display: block;  
-    white-space: pre-wrap;  
-    line-height: 1.5;
-}
 
 #lyrics div {
     white-space: normal; 
@@ -28,7 +28,37 @@
     height: 80%;
     width: 95%;
     overflow: auto;
+    scrollbar-width: thin;
 }
+
+#lyrics div pre{
+    font-size: 20px;
+    display: block;  
+    white-space: pre-wrap;  
+    line-height: 1.5;
+    opacity: 0; 
+    transition: opacity 2s ease; 
+}
+
+#lyrics.visible pre {
+    opacity: 1; 
+  }
+
+#lyrics {
+    opacity: 0;
+    transform: translateX(100%);  
+    transition: opacity 0.5s ease, transform 0.5s ease; 
+  }
+  
+  #lyrics.visible {
+    opacity: 1;
+    transform: translateX(0);
+    visibility: visible; 
+  }
+  
+  
+
+/* metadata */
 
 #divMD {
     background: #111;
@@ -54,24 +84,16 @@
     color: white;
 }
 
-#divMD div pre{
-    font-size: 25px;
-    display: block;  
-    white-space: pre-wrap;  
-    line-height: 1.5;
-}
-
 #divMD div {
     white-space: normal; 
     word-wrap: break-word;  
-    height: 80%;
-    width: 95%;
 }
 
 
 #imgMD {
     max-width: auto;
     max-height: 250px;
+    margin-bottom: 50px;
 }
 
 #divMD div:first-child {
@@ -79,11 +101,73 @@
     flex-direction: column;
     align-items: center;
     font-size: 25px;
-    margin-bottom: 30px;
+    margin-bottom: 100px;
 }
 
 #title div:last-child {
     background-color: gray;
     padding: 20px;
     text-align: center;
+    margin-top: 20px;
+}
+
+/* CD */
+
+#CD {
+    background: #111;
+    border-left: rgba(255, 255, 255, 0.671) 2px solid;
+    color: lightgray;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    font-size: 20px;
+}
+
+#bulle div p:first-child {
+    font-weight: bold;
+}
+
+#CD h4 {
+    font-size: 35px;
+    padding: 30px;
+    color: white;
+}
+
+#CD div div {
+    padding: 30px;
+    margin: 30px;
+}
+
+.bulle {
+    background: linear-gradient(180deg, rgba(71, 175, 245, 0.2) 0%, rgba(71, 175, 245, 0) 80%, rgba(71, 175, 245, 0) 100%);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10%;
+    border: 4px solid transparent; 
+    animation: borderAnimation 3s infinite; 
+}
+
+.hidden {
+    display: none;
+}
+
+/* KF */
+
+@keyframes borderAnimation {
+    0% {
+        border-color: rgba(71, 175, 245, 0.2);
+        box-shadow: 0 0 10px rgba(71, 175, 245, 0.2);
+    }
+    50% {
+        border-color: rgba(71, 175, 245, 0.8);
+        box-shadow: 0 0 20px rgba(71, 175, 245, 0.8);
+    }
+    100% {
+        border-color: rgba(71, 175, 245, 0.2);
+        box-shadow: 0 0 10px rgba(71, 175, 245, 0.2);
+    }
 }
