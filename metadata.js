@@ -1,58 +1,134 @@
-// let devicesButton = document.getElementById('devices-button');
-// let metaData = document.getElementById('metadata');
-// let lyrics = document.getElementById('lyrics');
-
-// async function query() {
-//     const request = await fetch('https://api.spotify.com/v1/search?type=track&q=gims%20bella&limit=3', {
-//         method: 'GET',
-//         headers: {
-//             authorization: `Bearer ${localStorage.getItem('token')}`,
-//         },
-//     });
-//     const response = await request.json();
-//     return (lyrics.innerHTML = `
-//     <h4>Lyrics</h4>
-//     <div>
-//     <pre>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt, atque blanditiis quidem veniam exercitationem facilis ex quos quae officia eius dicta nostrum quod eaque reprehenderit, temporibus voluptate magni laboriosam nobis.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt, atque blanditiis quidem veniam exercitationem facilis ex quos quae officia eius dicta nostrum quod eaque reprehenderit, temporibus voluptate magni laboriosam nobis.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt, atque blanditiis quidem veniam exercitationem facilis ex quos quae officia eius dicta nostrum quod eaque reprehenderit, temporibus voluptate magni laboriosam nobis.</pre>
-//     </div>
-//     `);
-// }
-
-// devicesButton.addEventListener('click', () => {
-//     query();
-//     lyrics.classList.toggle('visible');
-// });
-
+let mdButton = document.getElementById('md-button');
 let lyricsButton = document.getElementById('lyrics-button');
-let metaData = document.getElementById('metadata');
+let cdButton = document.getElementById('devices-button');
+
 let lyrics = document.getElementById('lyrics');
-import { getArtist } from './spotify.js';
+let divMD = document.getElementById('divMD');
+let CD = document.getElementById('CD');
 
-lyricsButton.addEventListener('click', () => {
-    // const res = query('Black M', 1);
-    // console.log(res);
-    lyrics.classList.toggle('visible');
-});
-
-// function test() {
-//     lyrics.innerHTML = `
-//     <h4>Lyrics</h4>
-//     <div>
-//     <pre> ${getArtist()}</pre>
-//     </div>
-//     `;
-// }
-
-async function query(type = 'artist', q, limit = 1) {
+async function query(type = 'track', q, limit = 3) {
     const request = await fetch(`https://api.spotify.com/v1/search?type=${type}&q=${q}&limit=${limit}`, {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('token')}`,
         },
     });
-    const response = await request.json();
-    displayTrackInfo(response);
-}
-query('artist', 'GIMS', 1);
 
-function displayTrackInfo(title, artist, album) {}
+    const response = await request.json();
+    console.log(response);
+
+    if (type === 'track' && response.tracks.items.length > 0) {
+        const track = response.tracks.items[0];
+        return {
+            title: track.name,
+            artist: track.artists[0].name,
+            album: track.album.name,
+            tracks: track.album.total_tracks,
+            img: track.album.images[0].url,
+        };
+    }
+}
+
+async function showMD() {
+    const song = await query('track', 'francegall', 3);
+
+    const { title, artist, album, tracks, img } = song;
+
+    divMD.innerHTML = `
+                        <div>
+                            <h4>informations sur le contenu</h4>
+                            <p>${artist}</p>
+                            <div id="title">
+                                <div>
+                                    <p>
+                                        <img src="${img}" alt="" id="imgMD">
+                                        (if liked)
+                                    </p>
+                                    <p>Titre : ${title}</p>
+                                    <p>Album : ${album} (${tracks} pistes)</p>
+                                </div>
+                                <p>(number)</p>
+                                <p>(song)</p>
+                            </div>
+                        </div>
+                      `;
+
+    if (divMD.classList.contains('hidden')) {
+        divMD.classList.remove('hidden');
+        divMD.classList.add('visible');
+    } else {
+        divMD.classList.remove('visible');
+        divMD.classList.add('hidden');
+    }
+
+    lyrics.classList.remove('visible');
+    lyrics.classList.add('hidden');
+    CD.classList.remove('visible');
+    CD.classList.add('hidden');
+}
+
+async function showLyrics() {
+    lyrics.innerHTML = `
+                        <h4>Paroles de chanson</h4>
+                        <div>
+                            <pre>lorem*10</pre>
+                        </div>
+                      `;
+
+    if (lyrics.classList.contains('hidden')) {
+        lyrics.classList.remove('hidden');
+        lyrics.classList.add('visible');
+    } else {
+        lyrics.classList.remove('visible');
+        lyrics.classList.add('hidden');
+    }
+
+    divMD.classList.remove('visible');
+    divMD.classList.add('hidden');
+    CD.classList.remove('visible');
+    CD.classList.add('hidden');
+}
+
+async function showCD() {
+    CD.innerHTML = `
+                    <div class="bulle">
+                        <h4>Se connecter à un appareil :</h4>
+                        <div>
+                            <p>Appareil actuel :</p>
+                            <br />
+                            <p>Périphérique High Definition Audio à partir de ce "PC"</p>
+                        </div>
+                        <div>
+                            <p>Sélectionnez un autre appareil</p>
+                        </div>
+                        <div>
+                            <p>Vous ne voyez pas votre appareil ?</p>
+                        </div>
+                    </div>
+                  `;
+
+    if (CD.classList.contains('hidden')) {
+        CD.classList.remove('hidden');
+        CD.classList.add('visible');
+    } else {
+        CD.classList.remove('visible');
+        CD.classList.add('hidden');
+    }
+
+    divMD.classList.remove('visible');
+    divMD.classList.add('hidden');
+    lyrics.classList.remove('visible');
+    lyrics.classList.add('hidden');
+}
+
+mdButton.addEventListener('click', async () => {
+    await showMD();
+});
+
+lyricsButton.addEventListener('click', async () => {
+    await showLyrics();
+});
+
+cdButton.addEventListener('click', async () => {
+    await showCD();
+});
