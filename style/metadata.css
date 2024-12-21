@@ -6,7 +6,8 @@
 
 #lyrics {
     background: #111;
-    border-left: rgba(255, 255, 255, 0.671) 2px solid;
+    /* border-left: rgba(255, 255, 255, 0.671) 2px solid; */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
     color: lightgray;
     display: flex;
     flex-direction: column;
@@ -58,7 +59,8 @@
 
 #divMD {
     background: #111;
-    border-left: rgba(255, 255, 255, 0.671) 2px solid;
+    /* border-left: rgba(255, 255, 255, 0.671) 2px solid; */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
     color: lightgray;
     display: flex;
     flex-direction: column;
@@ -109,7 +111,8 @@
 
 #CD {
     background: #111;
-    border-left: rgba(255, 255, 255, 0.671) 2px solid;
+    /* border-left: rgba(255, 255, 255, 0.671) 2px solid; */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
     color: lightgray;
     display: flex;
     flex-direction: column;

@@ -1,5 +1,6 @@
 :root {
     --accent: rgb(71, 175, 245);
+    --accent-trsp: rgba(71, 175, 245, 0.2);
 }
 #feed {
     width: 100%;
@@ -53,7 +54,7 @@
 #leaderboard-links div:hover {
     border-top: 1px solid var(--accent);
     color: var(--accent);
-    background: linear-gradient(180deg, rgba(71, 175, 245, 0.2) 0%, rgba(71, 175, 245, 0) 40%, rgba(71, 175, 245, 0) 100%);
+    background: linear-gradient(180deg, var(--accent-trsp) 0%, rgba(71, 175, 245, 0) 40%, rgba(71, 175, 245, 0) 100%);
     transition: border 0.25s, color 0.25s, background 0.25s;
     cursor: pointer;
 }
@@ -66,6 +67,28 @@
     color: white;
     border-top: 1px solid transparent;
     transition: border 0.25s, color 0.25s, background 0.25s;
+}
+#leaderboard-results table {
+    width: 100%;
+    padding: 0;
+    border-spacing: none;
+    border-collapse: collapse;
+}
+#leaderboard-results td:nth-child(6),
+#leaderboard-results td:nth-child(7) {
+    width: 48px;
+    height: 48px;
+    text-align: center;
+}
+#leaderboard-results tr {
+    border-left: 1px solid transparent;
+    transition: all 0.25s;
+}
+#leaderboard-results tr:hover {
+    border-left: 1px solid var(--accent);
+    background-image: linear-gradient(90deg, var(--accent-trsp) 0%, transparent 25%);
+    cursor: pointer;
+    transition: all 0.25s;
 }
 #leaderboard-results tr {
     color: rgba(255, 255, 255, 0.5);
@@ -86,4 +109,28 @@
 }
 .kebab-button {
     height: 20px;
+}
+
+.lb-place {
+    width: 50px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.lb-album {
+    height: 48px;
+    width: 48px;
+    background-size: cover;
+    margin: 0 auto;
+}
+.lb-title {
+    color: white;
+    padding-left: 2rem;
+}
+.lb-place,
+.lb-count-and-duration,
+.lb-creation-date,
+.play-button,
+.kebab-button {
+    text-align: center;
 }
