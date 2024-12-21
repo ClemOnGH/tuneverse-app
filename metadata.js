@@ -1,43 +1,143 @@
+let mdButton = document.getElementById('md-button');
 let lyricsButton = document.getElementById('lyrics-button');
-let metaData = document.getElementById('metadata');
-let lyrics = document.getElementById('lyrics');
+let cdButton = document.getElementById('devices-button');
 
-async function query(type = 'artist', q, limit = 3) {
+let lyrics = document.getElementById('lyrics');
+let divMD = document.getElementById('divMD');
+let CD = document.getElementById('CD');
+
+async function query(type = 'track', q, limit = 3) {
     const request = await fetch(`https://api.spotify.com/v1/search?type=${type}&q=${q}&limit=${limit}`, {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('token')}`,
         },
     });
-    
-    if (!request.ok) {
-        console.error("Erreur dans la requête :", request.statusText);
-        return "Erreur lors de la récupération des données.";
-    }
-    
+
     const response = await request.json();
-    
-    if (type === 'artist' && response.artists.items.length > 0) {
-        return `Artiste : ${response.artists.items[0].name}`;
-    } else if (type === 'track' && response.tracks.items.length > 0) {
-        return `Titre : ${response.tracks.items[0].name}`;
+    console.log(response);
+
+    if (type === 'track' && response.tracks.items.length > 0) {
+        const track = response.tracks.items[0];
+        return {
+            title: track.name,
+            artist: track.artists[0].name,
+            album: track.album.name,
+            tracks: track.album.total_tracks,
+            img: track.album.images[0].url
+        };
     }
-    
-    return "Aucun résultat trouvé.";
+
 }
 
-async function test() {
-    const lyricsText = await query('artist', 'GIMS', 3); 
-    lyrics.innerHTML = `
-    <h4>Lyrics</h4>
-    <div>
-        <pre>${lyricsText}</pre>
-    </div>
-    `;
+async function showMD() {
+    const song = await query('track', 'francegall', 3);
+
+    const { title, artist, album, tracks, img } = song;
+
+    divMD.innerHTML = `
+                        <div>
+                            <h4>informations sur le contenu</h4>
+                            <p>${artist}</p>
+                            <div id="title">
+                                <div>
+                                    <p>
+                                        <img src="${img}" alt="" id="imgMD">
+                                        (if liked)
+                                    </p>
+                                    <p>Titre : ${title}</p>
+                                    <p>Album : ${album} (${tracks} pistes)</p>
+                                </div>
+                                <p>(number)</p>
+                                <p>(song)</p>
+                            </div>
+                        </div>
+                      `;
+
+    if (divMD.classList.contains('hidden')) {
+        divMD.classList.remove('hidden');
+        divMD.classList.add('visible');
+    } else {
+        divMD.classList.remove('visible');
+        divMD.classList.add('hidden');
+    }
+
+    lyrics.classList.remove('visible');
+    lyrics.classList.add('hidden');
+    CD.classList.remove('visible');
+    CD.classList.add('hidden');
 }
+
+async function showLyrics() {
+    lyrics.innerHTML = `
+                        <h4>Paroles de chanson</h4>
+                        <div>
+                            <pre>lorem*10</pre>
+                        </div>
+                      `;
+
+    if (lyrics.classList.contains('hidden')) {
+        lyrics.classList.remove('hidden');
+        lyrics.classList.add('visible');
+    } else {
+        lyrics.classList.remove('visible');
+        lyrics.classList.add('hidden');
+    }
+
+    divMD.classList.remove('visible');
+    divMD.classList.add('hidden');
+    CD.classList.remove('visible');
+    CD.classList.add('hidden');
+}
+
+
+async function showCD() {
+    CD.innerHTML = `
+                    <div class="bulle">
+                        <h4>Se connecter à un appareil :</h4>
+                        <div>
+                            <p>Appareil actuel :</p>
+                            <br />
+                            <p>Périphérique High Definition Audio à partir de ce "PC"</p>
+                        </div>
+                        <div>
+                            <p>Sélectionnez un autre appareil</p>
+                        </div>
+                        <div>
+                            <p>Vous ne voyez pas votre appareil ?</p>
+                        </div>
+                    </div>
+                  `;
+
+    if (CD.classList.contains('hidden')) {
+        CD.classList.remove('hidden');
+        CD.classList.add('visible');
+    } else {
+        CD.classList.remove('visible');
+        CD.classList.add('hidden');
+    }
+
+    divMD.classList.remove('visible');
+    divMD.classList.add('hidden');
+    lyrics.classList.remove('visible');
+    lyrics.classList.add('hidden');
+}
+
+mdButton.addEventListener('click', async () => {
+    await showMD();
+});
 
 lyricsButton.addEventListener('click', async () => {
-    await test(); 
-    lyrics.classList.toggle('visible');
+    await showLyrics();
 });
+
+cdButton.addEventListener('click', async () => {
+    await showCD();
+});
+
+
+
+
+
+
 
