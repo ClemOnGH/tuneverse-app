@@ -73,6 +73,7 @@ searchBar.onkeyup = (e) => {
 
             res.tracks.items.forEach((track) => {
                 const div = document.createElement('div');
+                div.dataset.id = track.id;
                 div.innerHTML = `<img src="${track.album.images[0].url}"/><p>${track.name}</p><p>${track.artists[0].name}</p><p>${new Date(
                     track.duration_ms
                 )
@@ -302,9 +303,11 @@ async function displayLeaderboard(type = 'playlist') {
             durations.sort((a, b) => b.duration - a.duration);
 
             for (let i = 0; i < p.data.length; i++) {
-                tbody.innerHTML += `<tr><td class="lb-place">${i + 1}</td><td><div class="lb-album" style="background-image: url('${
-                    p.data[i].url
-                }'"></div></td><td class="lb-title">${p.data[i].title}</td><td class="lb-count-and-duration">${
+                tbody.innerHTML += `<tr data-id="${p.data[i].id}"><td class="lb-place">${
+                    i + 1
+                }</td><td><div class="lb-album" style="background-image: url('${p.data[i].url}'"></div></td><td class="lb-title">${
+                    p.data[i].title
+                }</td><td class="lb-count-and-duration">${
                     p.data[i].total + ' songs - ' + formatTime(durations[i])
                 }</td><td class="lb-creation-date">${formatDate(
                     durations[i].addedAt
@@ -320,7 +323,9 @@ async function displayLeaderboard(type = 'playlist') {
             trackCounts.sort((a, b) => b - a);
 
             for (let i = 0; i < ar.items.length; i++) {
-                tbody.innerHTML += `<tr><td class="lb-place">${i + 1}</td><td><div class="lb-cover" style="background-image: url('${
+                tbody.innerHTML += `<tr data-id="${ar.items[i].id}"><td class="lb-place">${
+                    i + 1
+                }</td><td><div class="lb-cover" style="background-image: url('${
                     ar.items[i].images[0].url
                 }'"></div></td><td class="lb-name">${ar.items[i].name}</td><td class="lb-count-and-duration">${
                     trackCounts[i] + ' songs'
@@ -332,7 +337,9 @@ async function displayLeaderboard(type = 'playlist') {
         case 'track':
             const s = await getTracks();
             for (let i = 0; i < s.items.length; i++) {
-                tbody.innerHTML += `<tr><td class="lb-place">${i + 1}</td><td><div class="lb-album" style="background-image: url('${
+                tbody.innerHTML += `<tr data-id="${s.items[i].id}"><td class="lb-place">${
+                    i + 1
+                }</td><td><div class="lb-album" style="background-image: url('${
                     s.items[i].album.images[0].url
                 }'"></div></td><td class="lb-title">${"<a href='" + s.items[i] + "'>" + s.items[i].name + '</a>'}</td><td id="lb-artist">${
                     s.items[i].artists[0].name
@@ -352,7 +359,6 @@ async function initFeedStats() {
     const artistsTop = await getArtists();
     const tracksTop = await getTracks();
     const userPlaylists = await getUserPlaylists();
-    console.log(userPlaylists.items.length);
     const div = document.getElementById('feed-stats');
     div.innerHTML = `<p>En 2024 vous avez...</p><div class="flex-stats"><div><p>(re)écouté <span>${tracksTop.total}</span> chansons</p></div><div><p>(re)découvert <span>${artistsTop.total}</span> artistes</p></div><div><p>crée <span>${userPlaylists.items.length}</span> playlists</p></div></div>`;
 }

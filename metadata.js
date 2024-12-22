@@ -1,4 +1,4 @@
-let spotifyQuery = document.getElementById("spotify-query")
+let spotifyQuery = document.getElementById('spotify-query');
 let mdButton = document.getElementById('md-button');
 let lyricsButton = document.getElementById('lyrics-button');
 let cdButton = document.getElementById('devices-button');
@@ -133,33 +133,31 @@ cdButton.addEventListener('click', async () => {
     await showCD();
 });
 
-
-spotifyQuery.addEventListener("focus", () => {
-    if (CD.classList.contains("visible")) {
-        CD.style.right = "-15%";
+spotifyQuery.addEventListener('focus', () => {
+    if (CD.classList.contains('visible')) {
+        CD.style.right = '-15%';
     }
-    if (divMD.classList.contains("visible")) {
-        divMD.style.right = "-15%";
+    if (divMD.classList.contains('visible')) {
+        divMD.style.right = '-15%';
     }
-    if (lyrics.classList.contains("visible")) {
-        lyrics.style.right = "-35%";
-    }
-});
-
-spotifyQuery.addEventListener("blur", () => {
-    if (CD.classList.contains("visible")) {
-        CD.style.right = "";
-    }
-    if (divMD.classList.contains("visible")) {
-        divMD.style.right = "";
-    }
-    if (lyrics.classList.contains("visible")) {
-        lyrics.style.right = "";
+    if (lyrics.classList.contains('visible')) {
+        lyrics.style.right = '-35%';
     }
 });
 
-// 
+spotifyQuery.addEventListener('blur', () => {
+    if (CD.classList.contains('visible')) {
+        CD.style.right = '';
+    }
+    if (divMD.classList.contains('visible')) {
+        divMD.style.right = '';
+    }
+    if (lyrics.classList.contains('visible')) {
+        lyrics.style.right = '';
+    }
+});
 
+//
 
 // spotifyQuery.addEventListener("focus", () => {
 //     if(CD.classList.contains("visible")) {
