@@ -83,6 +83,10 @@
 #leaderboard-results tr {
     border-left: 1px solid transparent;
     transition: all 0.25s;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+        sans-serif;
+    vertical-align: middle;
 }
 #leaderboard-results tr:hover {
     border-left: 1px solid var(--accent);
@@ -90,11 +94,11 @@
     cursor: pointer;
     transition: all 0.25s;
 }
-#leaderboard-results tr {
-    color: rgba(255, 255, 255, 0.5);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
-        sans-serif;
-    vertical-align: middle;
+#leaderboard-results {
+    margin-bottom: 1rem;
+}
+#feed-leaderboard {
+    margin-bottom: 1rem;
 }
 .lb-results-table {
     margin-top: 1rem;
@@ -117,7 +121,18 @@
     font-weight: bold;
 }
 
-.lb-album {
+.lb-followers {
+    min-width: 140px;
+}
+.lb-popularity {
+    min-width: 50px;
+}
+.lb-name {
+    padding-left: 4rem;
+}
+
+.lb-album,
+.lb-cover {
     height: 48px;
     width: 48px;
     background-size: cover;
@@ -131,6 +146,59 @@
 .lb-count-and-duration,
 .lb-creation-date,
 .play-button,
-.kebab-button {
+.kebab-button,
+.lb-cover,
+.lb-followers,
+.lb-popularity {
     text-align: center;
+}
+
+a {
+    color: white;
+}
+
+.skeleton-results {
+    border-radius: 15px;
+    height: 260px;
+    width: 100%;
+    background: linear-gradient(135deg, #151515 0%, #222 50%, #151515 100%);
+}
+
+.skeleton-stats {
+    position: absolute;
+    bottom: 0%;
+    margin-bottom: 1rem;
+    background-color: #222;
+    height: 180px;
+    width: 98%;
+    border-radius: 15px;
+}
+
+#feed-stats {
+    padding: 1rem;
+}
+
+#feed-stats > p {
+    color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+        sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.flex-stats {
+    display: flex;
+    justify-content: space-around;
+    line-height: 80px;
+}
+.flex-stats p {
+    font-weight: normal;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+        sans-serif;
+    color: white;
+}
+
+.flex-stats div {
+    padding: 1rem;
+    font-size: 20px;
 }

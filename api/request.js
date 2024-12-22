@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
 });
 // Étape 1 : Rediriger vers Spotify pour obtenir le code d'autorisation
 app.get('/login', (req, res) => {
-    const scopes = 'user-read-private user-read-email playlist-read-private playlist-read-collaborative';
+    const scopes = 'user-read-private user-read-email playlist-read-private playlist-read-collaborative user-top-read';
     const spotifyAuthUrl = `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&response_type=code&redirect_uri=${encodeURIComponent(
         REDIRECT_URI
     )}&scope=${encodeURIComponent(scopes)}`;
