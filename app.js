@@ -27,7 +27,7 @@ document.getElementById('spotify-auth').onclick = () => {
 };
 
 window.onload = async () => {
-    const request = await fetch('https://api.spotify.com/v1/search?type=track&q=jme%20tire%20maitre%20gims&limit=1', {
+    const request = await fetch('https://api.spotify.com/v1/search?type=track&q=hier%20encore%20aznavour%20charles&limit=1', {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('token')}`,
