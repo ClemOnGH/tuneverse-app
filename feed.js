@@ -1,4 +1,7 @@
 const feed = document.getElementById('feed');
+const searchBar = document.getElementById('spotify-query');
+
+let timeoutSearch;
 
 function skeletonLoaderFeed() {
     const feedLeaderboard = document.createElement('div');
@@ -18,23 +21,92 @@ function skeletonLoaderFeed() {
 
 skeletonLoaderFeed();
 
-const lbPlaylists = document.getElementById('feed-lb-link-playlists');
-const lbArtists = document.getElementById('feed-lb-link-artists');
-const lbSongs = document.getElementById('feed-lb-link-songs');
-// const lbAlbums = document.getElementById('feed-lb-link-albums');
+window.onclick = (e) => {
+    switch (e.target.id) {
+        case 'feed-lb-link-playlists':
+            displayLeaderboard('playlist');
 
-lbPlaylists.onclick = () => {
-    displayLeaderboard('playlist');
+            break;
+        case 'feed-lb-link-artists':
+            displayLeaderboard('artist');
+            break;
+        case 'feed-lb-link-songs':
+            displayLeaderboard('track');
+            break;
+    }
 };
-lbArtists.onclick = () => {
-    displayLeaderboard('artist');
+
+searchBar.onkeyup = (e) => {
+    const feedLeaderboard = document.getElementById('feed-leaderboard');
+    const feedStats = document.getElementById('feed-stats');
+    if (e.target.value) {
+        if (feedLeaderboard !== null || feedStats !== null) {
+            feedLeaderboard.remove();
+            feedStats.remove();
+        }
+
+        if (document.getElementById('result-wrapper')) {
+            feed.removeChild(document.getElementById('result-wrapper'));
+        }
+
+        const resultWrapper = document.createElement('div');
+        resultWrapper.style.width = '100%';
+        resultWrapper.style.height = '93%';
+        resultWrapper.style.display = 'flex';
+        resultWrapper.style.flexDirection = 'column';
+        resultWrapper.style.justifyContent = 'space-between';
+        resultWrapper.style.gap = '1rem';
+        resultWrapper.style.paddingTop = '1rem';
+        resultWrapper.id = 'result-wrapper';
+        feed.appendChild(resultWrapper);
+
+        resultWrapper.innerHTML = `<div id="artistsDiv"></div><div id="tracksDiv"></div>`;
+
+        clearTimeout(timeoutSearch);
+        timeoutSearch = setTimeout(async () => {
+            const res = await fetchSongs(e.target.value);
+            const artistsDiv = document.getElementById('artistsDiv');
+            const tracksDiv = document.getElementById('tracksDiv');
+
+            artistsDiv.innerHTML = `<div class="artistDiv-flex"><p>${res.artists.items[0].name}</p><p>${res.artists.items[0].followers.total} followers</p></div>`;
+            artistsDiv.style.backgroundImage = `url('${res.artists.items[0].images[0].url}')`;
+
+            res.tracks.items.forEach((track) => {
+                const div = document.createElement('div');
+                div.innerHTML = `<img src="${track.album.images[0].url}"/><p>${track.name}</p><p>${track.artists[0].name}</p><p>${new Date(
+                    track.duration_ms
+                )
+                    .toISOString()
+                    .slice(14, 19)}</p>`;
+                tracksDiv.appendChild(div);
+            });
+
+            console.log(res);
+        }, 1000);
+    } else {
+        const resultWrapper = document.getElementById('result-wrapper');
+        resultWrapper.remove();
+        skeletonLoaderFeed();
+        displayLeaderboard();
+        initFeedStats();
+    }
 };
-lbSongs.onclick = () => {
-    displayLeaderboard('track');
-};
-// lbAlbums.onclick = () => {
-//     displayLeaderboard('album');
-// };
+
+async function fetchSongs(q) {
+    try {
+        const req = await fetch(`https://api.spotify.com/v1/search?q=${q}&type=track,artist&limit=10`, {
+            method: 'GET',
+            headers: {
+                authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+        });
+        const res = await req.json();
+        return res;
+    } catch (e) {
+        console.error(e);
+        return null;
+    }
+}
 
 async function requestUserId() {
     try {
