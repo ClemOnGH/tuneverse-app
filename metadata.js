@@ -1,3 +1,4 @@
+let spotifyQuery = document.getElementById("spotify-query")
 let mdButton = document.getElementById('md-button');
 let lyricsButton = document.getElementById('lyrics-button');
 let cdButton = document.getElementById('devices-button');
@@ -36,8 +37,7 @@ async function showMD() {
 
     divMD.innerHTML = `
                         <div>
-                            <h4>informations sur le contenu</h4>
-                            <p>${artist}</p>
+                            <h3>${artist}</h3>
                             <div id="title">
                                 <div>
                                     <p>
@@ -132,3 +132,45 @@ lyricsButton.addEventListener('click', async () => {
 cdButton.addEventListener('click', async () => {
     await showCD();
 });
+
+
+spotifyQuery.addEventListener("focus", () => {
+    if (CD.classList.contains("visible")) {
+        CD.style.right = "-15%";
+    }
+    if (divMD.classList.contains("visible")) {
+        divMD.style.right = "-15%";
+    }
+    if (lyrics.classList.contains("visible")) {
+        lyrics.style.right = "-35%";
+    }
+});
+
+spotifyQuery.addEventListener("blur", () => {
+    if (CD.classList.contains("visible")) {
+        CD.style.right = "";
+    }
+    if (divMD.classList.contains("visible")) {
+        divMD.style.right = "";
+    }
+    if (lyrics.classList.contains("visible")) {
+        lyrics.style.right = "";
+    }
+});
+
+// 
+
+
+// spotifyQuery.addEventListener("focus", () => {
+//     if(CD.classList.contains("visible")) {
+//         CD.style.right = "-15%"
+//     }
+//     if(divMD.classList.contains("visible")) {
+//         divMD.style.right = "-5%"
+//     } else {
+//         divMD.style.right = "0%"
+//     }
+//     if(lyrics.classList.contains("visible")) {
+//         lyrics.style.right = "-15%"
+//     }
+// })
