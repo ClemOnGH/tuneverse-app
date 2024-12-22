@@ -31,7 +31,7 @@ async function query(type = 'track', q, limit = 3) {
 }
 
 async function showMD() {
-    const song = await query('track', 'francegall', 3);
+    const song = await query('track', 'hier encore', 3);
 
     const { title, artist, album, tracks, img } = song;
 
@@ -47,8 +47,7 @@ async function showMD() {
                                     <p>Titre : ${title}</p>
                                     <p>Album : ${album} (${tracks} pistes)</p>
                                 </div>
-                                <p>(number)</p>
-                                <p>(song)</p>
+                                <p>(liste d'attente)</p>
                             </div>
                         </div>
                       `;
@@ -71,7 +70,7 @@ async function showLyrics() {
     lyrics.innerHTML = `
                         <h4>Paroles de chanson</h4>
                         <div>
-                            <pre>lorem*10</pre>
+                            <pre>Hier encore J'avais vingt ans, je caressais le temps et jouais de la vie comme on joue de l'amour et je vivais la nuit sans compter sur mes jours qui fuyaient dans le temps j'ai fait tant de projets qui sont restés en l'air j'ai fondé tant d'espoirs qui se sont envolés que je reste perdu, ne sachant où aller les yeux cherchant le ciel mais le cœur mis en terre hier encore j'avais vingt ans, je gaspillais le temps en croyant l'arrêter et pour le retenir, même le devancer je n'ai fait que courir et me suis essoufflé ignorant le passé conjuguant au futur je précédais de moi toute conversation et donnais mon avis que je voulais le bon pour critiquer le monde avec désinvolture hier encore j'avais vingt ans mais j'ai perdu mon temps à faire des folies qui ne me laissent au fond rien de vraiment précis que quelques rides au front et la peur de l'ennui car mes amours sont mortes avant que d'exister mes amis sont partis et ne reviendront pas par ma faute, j'ai fait le vide autour de moi et j'ai gâché ma vie et mes jeunes années Du meilleur et du pire en rejetant le meilleur j'ai figé mes sourires et j'ai glacé mes pleurs où sont-ils à présent? à présent Mes vingt ans</pre>
                         </div>
                       `;
 

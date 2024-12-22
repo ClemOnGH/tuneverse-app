@@ -59,29 +59,56 @@
                 color: #666;
             }
             #action-buttons {
+                color: lightgray;
                 display: flex;
-                justify-content: space-around;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
                 height: 100%;
+                font-size: 15px;
             }
-            #action-buttons div {
-                width: 60px;
+
+            #lyrics-button,
+            #devices-button,
+            #md-button {
+                color: lightgray;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                height: 100%;
+                font-size: 15px;
+                margin-right: 30px;
             }
-            #action-buttons div img {
-                mix-blend-mode: multiply;
-            }
+
             #volume-slider {
                 transition: all 0.25s;
-            }
-            #md-button {
-                background-color: blue;
-            }
-            #lyrics-button {
-                background-color: red;
             }
             #leaderboard-stats {
                 width: 100%;
                 height: 100%;
                 background: red;
+            }
+
+            #lyrics-button,
+            #md-button,
+            #devices-button {
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
+                    'Helvetica Neue', sans-serif;
+                padding: 5px;
+                color: white;
+                border-bottom: 2px solid transparent;
+                transition: border 0.25s, color 0.25s, background 0.25s;
+            }
+
+            #lyrics-button:hover,
+            #md-button:hover,
+            #devices-button:hover {
+                border-bottom: 2px solid var(--accent);
+                color: var(--accent);
+                background: linear-gradient(to top, rgba(71, 175, 245, 0.2) 0%, rgba(71, 175, 245, 0) 40%, rgba(71, 175, 245, 0) 100%);
+                transition: border 0.25s, color 0.25s, background 0.25s;
+                cursor: pointer;
             }
         </style>
         <div id="window">
@@ -124,24 +151,13 @@
             <div id="progress-slider"></div>
             <div id="action-buttons">
                 <div id="lyrics-button">
-                    <img height="25px" src="./icons/caption.svg" />
+                    <p>Paroles</p>
                 </div>
                 <div id="md-button">
-                    <img height="25px" src="./icons/cast.svg" />
+                    <p>Informations</p>
                 </div>
                 <div id="devices-button">
-                    <svg
-                        version="1.0"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="512.000000pt"
-                        height="512.000000pt"
-                        viewBox="0 0 512.000000 512.000000"
-                        preserveAspectRatio="xMidYMid meet"
-                    >
-                        <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
-                            <!-- Vous pouvez ajouter des éléments SVG ici pour dessiner quelque chose -->
-                        </g>
-                    </svg>
+                    <p>Autres appareils</p>
                 </div>
                 <input id="volume-slider" type="range" min="0" max="100" value="50" step="5" />
             </div>
